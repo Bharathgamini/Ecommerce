@@ -1,17 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results ignored="0" total="3" passed="3" failed="0" skipped="0">
+<testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-21T01:30:26 IST" name="Suite" finished-at="2025-10-21T01:30:51 IST" duration-ms="25630">
+  <suite started-at="2025-10-22T04:54:12 IST" name="Suite" finished-at="2025-10-22T04:55:12 IST" duration-ms="60502">
     <groups>
     </groups>
-    <test started-at="2025-10-21T01:30:26 IST" name="Test" finished-at="2025-10-21T01:30:51 IST" duration-ms="25630">
-      <class name="testcases.ProductSearch_Testcase">
-        <test-method signature="productsearch(java.lang.String)[pri:3, instance:testcases.ProductSearch_Testcase@16293aa2]" started-at="2025-10-21T01:30:45 IST" name="productsearch" data-provider="SearchData" finished-at="2025-10-21T01:30:51 IST" duration-ms="5906" status="PASS">
+    <test started-at="2025-10-22T04:54:12 IST" name="Test" finished-at="2025-10-22T04:55:12 IST" duration-ms="60502">
+      <class name="testcases.Addingitem_toCart">
+        <test-method signature="addingtocart(java.lang.String)[pri:4, instance:testcases.Addingitem_toCart@72d1ad2e]" started-at="2025-10-22T04:54:36 IST" name="addingtocart" data-provider="SearchData" finished-at="2025-10-22T04:55:12 IST" duration-ms="36377" status="PASS">
           <params>
             <param index="0">
               <value>
-                <![CDATA[Iphone 17 pro max 256gb]]>
+                <![CDATA[iPhone 17 Pro 256]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- addingtocart -->
+      </class> <!-- testcases.Addingitem_toCart -->
+      <class name="testcases.ProductSearch_Testcase">
+        <test-method signature="productsearch(java.lang.String)[pri:3, instance:testcases.ProductSearch_Testcase@595b007d]" started-at="2025-10-22T04:54:31 IST" name="productsearch" data-provider="SearchData" finished-at="2025-10-22T04:54:36 IST" duration-ms="4324" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[iPhone 17 Pro 256]]>
               </value>
             </param>
           </params>
@@ -20,21 +33,21 @@
         </test-method> <!-- productsearch -->
       </class> <!-- testcases.ProductSearch_Testcase -->
       <class name="testcases.Amazonlaunching">
-        <test-method is-config="true" signature="setup()[pri:0, instance:testcases.Amazonlaunching@4567f35d]" started-at="2025-10-21T01:30:15 IST" name="setup" finished-at="2025-10-21T01:30:26 IST" duration-ms="10911" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T04:54:02 IST" name="setup" finished-at="2025-10-22T04:54:12 IST" duration-ms="9492" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="test()[pri:1, instance:testcases.Amazonlaunching@4567f35d]" started-at="2025-10-21T01:30:26 IST" name="test" finished-at="2025-10-21T01:30:27 IST" duration-ms="679" status="PASS">
+        <test-method signature="test()[pri:1, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T04:54:12 IST" name="test" finished-at="2025-10-22T04:54:13 IST" duration-ms="922" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- test -->
-        <test-method is-config="true" signature="close()[pri:0, instance:testcases.Amazonlaunching@4567f35d]" started-at="2025-10-21T01:30:59 IST" name="close" finished-at="2025-10-21T01:30:59 IST" depends-on-methods="testcases.Login_TestCase.signoutapplication" duration-ms="250" status="PASS">
+        <test-method is-config="true" signature="close()[pri:0, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T04:55:20 IST" name="close" finished-at="2025-10-22T04:55:21 IST" depends-on-methods="testcases.Login_TestCase.signoutapplication" duration-ms="569" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
       </class> <!-- testcases.Amazonlaunching -->
       <class name="testcases.Login_TestCase">
-        <test-method signature="loginpagetest(java.lang.String,java.lang.String)[pri:2, instance:testcases.Login_TestCase@5c5eefef]" started-at="2025-10-21T01:30:35 IST" name="loginpagetest" data-provider="LoginData" finished-at="2025-10-21T01:30:45 IST" duration-ms="10477" status="PASS">
+        <test-method signature="loginpagetest(java.lang.String,java.lang.String)[pri:2, instance:testcases.Login_TestCase@5158b42f]" started-at="2025-10-22T04:54:21 IST" name="loginpagetest" data-provider="LoginData" finished-at="2025-10-22T04:54:31 IST" duration-ms="9966" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -50,7 +63,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginpagetest -->
-        <test-method is-config="true" signature="signoutapplication()[pri:0, instance:testcases.Login_TestCase@5c5eefef]" started-at="2025-10-21T01:30:56 IST" name="signoutapplication" finished-at="2025-10-21T01:30:59 IST" duration-ms="2716" status="PASS">
+        <test-method is-config="true" signature="signoutapplication()[pri:0, instance:testcases.Login_TestCase@5158b42f]" started-at="2025-10-22T04:55:17 IST" name="signoutapplication" finished-at="2025-10-22T04:55:20 IST" duration-ms="3153" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- signoutapplication -->

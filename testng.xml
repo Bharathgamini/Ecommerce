@@ -6,6 +6,7 @@
       <class name="testcases.Amazonlaunching"/>
       <class name="testcases.Login_TestCase"/>
       <class name="testcases.ProductSearch_Testcase"/>
+      <class name="testcases.Addingitem_toCart"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

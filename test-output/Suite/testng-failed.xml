@@ -3,13 +3,13 @@
 <suite name="Failed suite [Suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Test(failed)">
     <classes>
-      <class name="testcases.ProductSearch_Testcase">
+      <class name="testcases.Addingitem_toCart">
         <methods>
           <include name="close"/>
           <include name="setup"/>
-          <include name="productsearch" invocation-numbers="0"/>
+          <include name="addingtocart" invocation-numbers="0"/>
         </methods>
-      </class> <!-- testcases.ProductSearch_Testcase -->
+      </class> <!-- testcases.Addingitem_toCart -->
     </classes>
   </test> <!-- Test(failed) -->
 </suite> <!-- Failed suite [Suite] -->
