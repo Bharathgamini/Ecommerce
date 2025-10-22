@@ -51,7 +51,7 @@ public class Addingitem_tocart extends BasePage {
         	{
 		        WebElement eachproduct = product.findElement(By.xpath("//span[@class='a-price-whole']"));
 		        String value = eachproduct.getText();
-		        System.out.println(value);
+		      //  System.out.println(value);
 		        String numericValue = value.replaceAll("[^0-9]", "");
 		        int price = Integer.parseInt(numericValue);
 		        if(price<minPrice)
@@ -143,15 +143,7 @@ public class Addingitem_tocart extends BasePage {
     	addtocartverify.click();
     	boolean b = cart.isDisplayed();
     	System.out.println("Shopping cart page is opened" + b);
-    	if(b)
-    	{
- //       WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        List<WebElement> listofitems = wait.until(
-//                ExpectedConditions.visibilityOfAllElementsLocatedBy(
-//                        By.xpath("//span[contains(@class, 'a-truncate') and contains(@class,'a-truncate-full a-offscreen')]")
-//                )
-//        );
-        
+    	        
         List<WebElement> listofitems = 
                         driver.findElements(By.xpath("//span[contains(@class, 'a-truncate')]"));
     	System.out.println(listofitems.size());
@@ -173,4 +165,4 @@ public class Addingitem_tocart extends BasePage {
         }
     }
 }
-}
+

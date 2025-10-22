@@ -2,12 +2,12 @@
 <testng-results ignored="0" total="4" passed="4" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-10-22T16:44:57 IST" name="Suite" finished-at="2025-10-22T16:45:37 IST" duration-ms="39427">
+  <suite started-at="2025-10-22T17:19:29 IST" name="Suite" finished-at="2025-10-22T17:20:06 IST" duration-ms="37418">
     <groups>
     </groups>
-    <test started-at="2025-10-22T16:44:57 IST" name="Test" finished-at="2025-10-22T16:45:37 IST" duration-ms="39427">
+    <test started-at="2025-10-22T17:19:29 IST" name="Test" finished-at="2025-10-22T17:20:06 IST" duration-ms="37418">
       <class name="testcases.Addingitem_toCart">
-        <test-method signature="addingtocart(java.lang.String)[pri:4, instance:testcases.Addingitem_toCart@72d1ad2e]" started-at="2025-10-22T16:45:20 IST" name="addingtocart" data-provider="SearchData" finished-at="2025-10-22T16:45:37 IST" duration-ms="16107" status="PASS">
+        <test-method signature="addingtocart(java.lang.String)[pri:4, instance:testcases.Addingitem_toCart@72d1ad2e]" started-at="2025-10-22T17:19:48 IST" name="addingtocart" data-provider="SearchData" finished-at="2025-10-22T17:20:06 IST" duration-ms="18321" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -20,7 +20,7 @@
         </test-method> <!-- addingtocart -->
       </class> <!-- testcases.Addingitem_toCart -->
       <class name="testcases.ProductSearch_Testcase">
-        <test-method signature="productsearch(java.lang.String)[pri:3, instance:testcases.ProductSearch_Testcase@595b007d]" started-at="2025-10-22T16:45:16 IST" name="productsearch" data-provider="SearchData" finished-at="2025-10-22T16:45:20 IST" duration-ms="4177" status="PASS">
+        <test-method signature="productsearch(java.lang.String)[pri:3, instance:testcases.ProductSearch_Testcase@595b007d]" started-at="2025-10-22T17:19:47 IST" name="productsearch" data-provider="SearchData" finished-at="2025-10-22T17:19:48 IST" duration-ms="1151" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -33,21 +33,21 @@
         </test-method> <!-- productsearch -->
       </class> <!-- testcases.ProductSearch_Testcase -->
       <class name="testcases.Amazonlaunching">
-        <test-method is-config="true" signature="setup()[pri:0, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T16:44:45 IST" name="setup" finished-at="2025-10-22T16:44:57 IST" duration-ms="12330" status="PASS">
+        <test-method is-config="true" signature="setup()[pri:0, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T17:19:15 IST" name="setup" finished-at="2025-10-22T17:19:29 IST" duration-ms="14231" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setup -->
-        <test-method signature="test()[pri:1, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T16:44:57 IST" name="test" finished-at="2025-10-22T16:44:58 IST" duration-ms="1098" status="PASS">
+        <test-method signature="test()[pri:1, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T17:19:29 IST" name="test" finished-at="2025-10-22T17:19:30 IST" duration-ms="828" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- test -->
-        <test-method is-config="true" signature="close()[pri:0, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T16:45:44 IST" name="close" finished-at="2025-10-22T16:45:44 IST" depends-on-methods="testcases.Login_TestCase.signoutapplication" duration-ms="323" status="PASS">
+        <test-method is-config="true" signature="close()[pri:0, instance:testcases.Amazonlaunching@6356695f]" started-at="2025-10-22T17:20:14 IST" name="close" finished-at="2025-10-22T17:20:15 IST" depends-on-methods="testcases.Login_TestCase.signoutapplication" duration-ms="403" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- close -->
       </class> <!-- testcases.Amazonlaunching -->
       <class name="testcases.Login_TestCase">
-        <test-method signature="loginpagetest(java.lang.String,java.lang.String)[pri:2, instance:testcases.Login_TestCase@5158b42f]" started-at="2025-10-22T16:45:05 IST" name="loginpagetest" data-provider="LoginData" finished-at="2025-10-22T16:45:16 IST" duration-ms="10254" status="PASS">
+        <test-method signature="loginpagetest(java.lang.String,java.lang.String)[pri:2, instance:testcases.Login_TestCase@5158b42f]" started-at="2025-10-22T17:19:38 IST" name="loginpagetest" data-provider="LoginData" finished-at="2025-10-22T17:19:46 IST" duration-ms="8569" status="PASS">
           <params>
             <param index="0">
               <value>
@@ -63,7 +63,7 @@
           <reporter-output>
           </reporter-output>
         </test-method> <!-- loginpagetest -->
-        <test-method is-config="true" signature="signoutapplication()[pri:0, instance:testcases.Login_TestCase@5158b42f]" started-at="2025-10-22T16:45:42 IST" name="signoutapplication" finished-at="2025-10-22T16:45:44 IST" duration-ms="2227" status="PASS">
+        <test-method is-config="true" signature="signoutapplication()[pri:0, instance:testcases.Login_TestCase@5158b42f]" started-at="2025-10-22T17:20:11 IST" name="signoutapplication" finished-at="2025-10-22T17:20:14 IST" duration-ms="2939" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- signoutapplication -->
