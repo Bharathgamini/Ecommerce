@@ -30,21 +30,52 @@ public class Addingitem_tocart extends BasePage {
     
     @FindBy(xpath="//h2[normalize-space()= 'Shopping Cart']")
     WebElement cart;
+    
+//    @FindBy(xpath="//span[@class='a-price-whole']")
+//    WebElement price;
 
     // Selecting the product from search results
-    public void selectProduct(String productName) {
+	public void selectProduct(String productName) {
         String parentwindow = driver.getWindowHandle();
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         // Find the product dynamically
-        WebElement product = driver.findElement(
-                By.xpath("//a[.//span[contains(text(), '"+productName+"')]][1]")
+        List<WebElement> products = driver.findElements(
+                By.xpath("//a[.//span[contains(text(), '"+productName+"')]]")
         );
-
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(product));
-        System.out.println("Clicking the product element...");
-        product.click();
-
+        int minPrice = Integer.MAX_VALUE;
+        WebElement cheapestProduct = null;
+        for(WebElement product: products)
+        {
+        	try
+        	{
+		        WebElement eachproduct = product.findElement(By.xpath("//span[@class='a-price-whole']"));
+		        String value = eachproduct.getText();
+		        System.out.println(value);
+		        String numericValue = value.replaceAll("[^0-9]", "");
+		        int price = Integer.parseInt(numericValue);
+		        if(price<minPrice)
+		        {
+		        	minPrice = price;
+		        	cheapestProduct = product;
+		        	System.out.println("chapest product text is "+cheapestProduct.getText());
+		        //System.out.println(valuetoprice2);
+		        }
+		       }catch(Exception e)
+		        	{
+		    	   System.out.println("skipping a product due to error" +e);
+		        	}
+		        }
+		       if(cheapestProduct!=null)
+		        {
+		        wait.until(ExpectedConditions.visibilityOf(cheapestProduct));
+		        System.out.println("Clicking the product element...");
+		        cheapestProduct.click();
+		        }
+		       else
+		       {
+		    	   System.out.println("No clickable element found");
+		       }
         // Wait for new window/tab and switch
         wait.until(ExpectedConditions.numberOfWindowsToBe(2));
         Set<String> allWindows = driver.getWindowHandles();
