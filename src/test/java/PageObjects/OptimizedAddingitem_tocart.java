@@ -3,7 +3,6 @@ package PageObjects;
 import java.time.Duration;
 import java.util.List;
 import java.util.Set;
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -11,13 +10,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class Addingitem_tocart extends BasePage {
+public class OptimizedAddingitem_tocart extends BasePage {
 
-    private String prodcutname; // Class-level variable
+	private String prodcutname; // Stores selected product name globally for later verification
 
-    public Addingitem_tocart(WebDriver driver) {
+    public OptimizedAddingitem_tocart(WebDriver driver) {
         super(driver);
     }
+
+    // ------------------- WebElements -------------------
 
     @FindBy(xpath = "//h2[text()='Results']")
     WebElement findingtheresults;
@@ -27,88 +28,33 @@ public class Addingitem_tocart extends BasePage {
 
     @FindBy(xpath = "//a[@id='nav-cart']")
     WebElement addtocartverify;
-    
-    @FindBy(xpath="//h2[normalize-space()= 'Shopping Cart']")
-    WebElement cart;
-    
-    @FindBy(xpath="//span/a[text()='1']")
-    WebElement pages;
-    
-    
-//    @FindBy(xpath="//span[@class='a-price-whole']")
-//    WebElement price;
 
-    // Selecting the product from search results
-//	public void selectProduct(String productName) {
-//        String parentwindow = driver.getWindowHandle();
-//        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-//        // need to get the list of pages first then will find the list of producs which match the name that was searched
-//        int n=100;
-//        
-//        for(int i=1; i<=n; i++)
-//        {
-//        	driver.findElement(By.xpath("xpath=\"//span/a[text()='"+n+"']\"")).click();   
-//        	
-//        // Find the product dynamically
-//        List<WebElement> products = driver.findElements(
-//                By.xpath("//a[.//span[contains(text(), '"+productName+"')]]"));
-//        int minPrice = Integer.MAX_VALUE;
-//        WebElement cheapestProduct = null;
-//        for(WebElement product: products)
-//        {
-//        	try
-//        	{
-//		        WebElement eachproduct = product.findElement(By.xpath("//span[@class='a-price-whole']"));
-//		        String value = eachproduct.getText();
-//		      //  System.out.println(value);
-//		        String numericValue = value.replaceAll("[^0-9]", "");
-//		        int price = Integer.parseInt(numericValue);
-//		        if(price<minPrice)
-//		        {
-//		        	minPrice = price;
-//		        	cheapestProduct = product;
-//		        	System.out.println("chapest product text is "+cheapestProduct.getText());
-//		        //System.out.println(valuetoprice2);
-//		        }
-//		       }catch(Exception e)
-//		        	{
-//		    	   System.out.println("skipping a product due to error" +e);
-//		        	}
-//		        }
-//		       if(cheapestProduct!=null)
-//		        {
-//		        wait.until(ExpectedConditions.visibilityOf(cheapestProduct));
-//		        System.out.println("Clicking the product element...");
-//		        cheapestProduct.click();
-//		        }
-//		       else
-//		       {
-//		    	   System.out.println("No clickable element found");
-//		       }
-//        // Wait for new window/tab and switch
-//        wait.until(ExpectedConditions.numberOfWindowsToBe(2));
-//        Set<String> allWindows = driver.getWindowHandles();
-//        for (String window : allWindows) {
-//            if (!window.equals(parentwindow)) {
-//                driver.switchTo().window(window);
-//                break;
-//            }
-//        }
-//    }
-//}
-    // Capture product name and add to cart
+    @FindBy(xpath = "//h2[normalize-space()= 'Shopping Cart']")
+    WebElement cart;
+
+    @FindBy(xpath = "//span/a[text()='1']")
+    WebElement pages;
+
+
+    // ------------------- Methods -------------------
+
+    // Captures product name and adds the product to cart
     public String addingproduct(String productName) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+
+        // Wait until product title becomes visible
         prodcutname = wait.until(
                 ExpectedConditions.visibilityOfElementLocated(By.xpath("//span[@id='productTitle']"))
         ).getText().trim();
 
         System.out.println("Captured product: " + prodcutname);
 
+        // (Condition always true, but kept same for logical consistency)
         if (prodcutname.equalsIgnoreCase(prodcutname)) {
+            // Get all add-to-cart buttons (there can be multiple)
             List<WebElement> buttons = driver.findElements(By.xpath("//input[@id='add-to-cart-button']"));
             for (WebElement button : buttons) {
-                if (button.isDisplayed()) {
+                if (button.isDisplayed()) { // Click first visible button
                     button.click();
                     System.out.println("Clicked Add to Cart button for: " + prodcutname);
                     break;
@@ -116,13 +62,12 @@ public class Addingitem_tocart extends BasePage {
             }
         } else {
             System.out.println("Expected product does not match actual product.");
-            
         }
 
         return prodcutname;
     }
 
-    // Check if search results are displayed
+    // Verifies if search results are displayed
     public void matchingresults() {
         if (findingtheresults.isDisplayed()) {
             System.out.println("Result found");
@@ -131,12 +76,12 @@ public class Addingitem_tocart extends BasePage {
         }
     }
 
-    // Close add-to-cart modal if visible
+    // Closes add-to-cart popup modal (if appears)
     public void addtocartmodal() {
-    	WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(
-                ExpectedConditions.visibilityOfAllElements(addtocartclose));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         try {
+            // Wait until close icon is visible
+            wait.until(ExpectedConditions.visibilityOfAllElements(addtocartclose));
             if (addtocartclose.isDisplayed()) {
                 addtocartclose.click();
                 System.out.println("Closed add-to-cart modal");
@@ -146,21 +91,23 @@ public class Addingitem_tocart extends BasePage {
         }
     }
 
-    // Verify product is in the cart
+    // Verifies product is present in the cart after adding
     public void addtocartcheck() throws InterruptedException {
-        Thread.sleep(2000);
-    	addtocartverify.click();
-    	boolean b = cart.isDisplayed();
-    	System.out.println("Shopping cart page is opened" + b);
-    	        
-        List<WebElement> listofitems = 
-                        driver.findElements(By.xpath("//span[contains(@class, 'a-truncate')]"));
-    	System.out.println(listofitems.size());
+        Thread.sleep(2000); // Small wait for cart update
+        addtocartverify.click(); // Navigate to cart page
+
+        boolean b = cart.isDisplayed();
+        System.out.println("Shopping cart page is opened" + b);
+
+        // Fetch list of items inside the cart
+        List<WebElement> listofitems =
+                driver.findElements(By.xpath("//span[contains(@class, 'a-truncate')]"));
+
+        System.out.println(listofitems.size());
         boolean found = false;
+
         for (WebElement item : listofitems) {
             String cartitem = item.getText().trim();
-            
-           //System.out.println(prodcutname);
             System.out.println(cartitem);
             if (cartitem.equalsIgnoreCase(prodcutname)) {
                 System.out.println("Product has been added to the cart: " + cartitem);
@@ -168,38 +115,42 @@ public class Addingitem_tocart extends BasePage {
                 break;
             }
         }
-    	
+
         if (!found) {
             System.out.println("Product not found in the cart!");
         }
     }
 
+    // Selects the cheapest product from all pages for the given product name
     public void selectProduct(String productName) {
         String parentWindow = driver.getWindowHandle();
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
         int currentPage = 1;
-        int globalMinPrice = Integer.MAX_VALUE;
-        String globalCheapestProduct = null;
-        int globalCheapestPage = 1;
+        int globalMinPrice = Integer.MAX_VALUE; // To store globally lowest price
+        String globalCheapestProduct = null;    // To store globally cheapest product name
+        int globalCheapestPage = 1;             // To store page number where cheapest product found
 
+        // Loop through all result pages
         while (true) {
             System.out.println("Processing page " + currentPage + "...");
 
-            // Find all product elements with given product name
+            // Find all product links containing product name
             List<WebElement> products = driver.findElements(
                     By.xpath("//a[.//span[contains(text(), '" + productName + "')]]"));
 
-            int pageMinPrice = Integer.MAX_VALUE;
-            String pageCheapestProduct = null;
+            int pageMinPrice = Integer.MAX_VALUE;  // Lowest price for current page
+            String pageCheapestProduct = null;     // Product name with lowest price on current page
 
             for (WebElement product : products) {
                 try {
+                    // Get product price element
                     WebElement priceElement = product.findElement(By.xpath("//span[@class='a-price-whole']"));
                     String value = priceElement.getText().replaceAll("[^0-9]", "");
                     int price = Integer.parseInt(value);
                     String name = product.getText().trim();
 
+                    // Compare price to find lowest in current page
                     if (price < pageMinPrice) {
                         pageMinPrice = price;
                         System.out.println(pageMinPrice);
@@ -211,6 +162,7 @@ public class Addingitem_tocart extends BasePage {
                 }
             }
 
+            // Compare current page lowest price with global lowest
             if (pageCheapestProduct != null) {
                 System.out.println("Page " + currentPage + " cheapest price: " + pageMinPrice);
                 if (pageMinPrice < globalMinPrice) {
@@ -220,12 +172,12 @@ public class Addingitem_tocart extends BasePage {
                 }
             }
 
-            //  move to next page
+            // Try moving to next page
             try {
                 WebElement nextPage = driver.findElement(
                         By.xpath("//span[@class='a-list-item']/a[contains(@aria-label, 'next')]"));
                 nextPage.click();
-             //   wait.until(ExpectedConditions.stalenessOf(products.get(0)));
+                //wait.until(ExpectedConditions.stalenessOf(products.get(0)));
                 currentPage++;
             } catch (Exception e) {
                 System.out.println("No more pages found, ending loop.");
@@ -233,10 +185,9 @@ public class Addingitem_tocart extends BasePage {
             }
         }
 
-        // ✅ Now, navigate back to the page that had the global cheapest product
+        // After checking all pages, navigate to the page having cheapest product
         System.out.println("Cheapest product found on page " + globalCheapestPage + " with price " + globalMinPrice);
 
-        // Go to that page again where we are having the cheapest product
         try {
             WebElement targetPage = driver.findElement(
                     By.xpath("//a[contains(@aria-label,'Go to page " + globalCheapestPage + "')]"));
@@ -247,13 +198,14 @@ public class Addingitem_tocart extends BasePage {
             System.out.println("Could not navigate directly to page " + globalCheapestPage + ": " + e.getMessage());
         }
 
-        // Click the product
+        // Click the cheapest product
         try {
             WebElement productToClick = driver.findElement(
                     By.xpath("//a[.//span[contains(text(), '" + globalCheapestProduct + "')]]"));
             wait.until(ExpectedConditions.elementToBeClickable(productToClick));
             productToClick.click();
 
+            // Switch to the new window if opened
             wait.until(ExpectedConditions.numberOfWindowsToBe(2));
             Set<String> allWindows = driver.getWindowHandles();
             for (String window : allWindows) {
@@ -268,3 +220,46 @@ public class Addingitem_tocart extends BasePage {
         }
     }
 }
+
+
+/*  ------------------- LOGIC EXPLANATION HIGHLIGHTS -------------------
+
+1️⃣ while(true):
+   - Used because the total number of result pages is unknown.
+   - The loop continues until no “Next” page button is found, then breaks.
+
+2️⃣ globalMinPrice & pageMinPrice:
+   - pageMinPrice → tracks the cheapest price within a single page.
+   - globalMinPrice → compares prices across all pages to find the overall cheapest product.
+
+3️⃣ Why comparing prices:
+   - For every product found on a page, price text is extracted.
+   - Only numeric characters are kept using regex [^0-9].
+   - Parse it into integer and compare to find the minimum.
+
+4️⃣ globalCheapestProduct & globalCheapestPage:
+   - Store the product name and page number where the lowest price was found.
+   - Used later to revisit that specific page after scanning all pages.
+
+5️⃣ ExpectedConditions.stalenessOf (commented):
+   - Useful to wait until the previous page’s DOM is refreshed before proceeding.
+   - Prevents StaleElementReferenceException when moving between pages.
+
+6️⃣ The period (.) in XPath:
+   - When used like `.//span[@class='a-price-whole']`, it searches relative to the current WebElement.
+   - Without `.`, Selenium searches the entire DOM again, which may cause wrong matches or duplicates.
+
+7️⃣ Switching Windows:
+   - After clicking a product, Amazon often opens it in a new tab.
+   - numberOfWindowsToBe(2) waits until the new tab opens.
+   - Then the driver switches focus to that new tab.
+
+8️⃣ addtocartcheck():
+   - Opens the cart and matches the previously stored product name (prodcutname) with cart items.
+   - Ensures product addition was successful.
+
+9️⃣ addtocartmodal():
+   - Handles the post-cart modal that appears after adding an item.
+   - Closes it safely without interrupting execution.
+
+--------------------------------------------------------------- */
